@@ -7,14 +7,27 @@
   "targets": {
     ".NETCoreApp,Version=v6.0": {
       "HomeOrganiser/1.0.0": {
+        "dependencies": {
+          "HomeOrganiser.Core": "1.0.0"
+        },
         "runtime": {
           "HomeOrganiser.dll": {}
+        }
+      },
+      "HomeOrganiser.Core/1.0.0": {
+        "runtime": {
+          "HomeOrganiser.Core.dll": {}
         }
       }
     }
   },
   "libraries": {
     "HomeOrganiser/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "HomeOrganiser.Core/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

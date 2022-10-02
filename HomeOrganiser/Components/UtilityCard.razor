@@ -1,0 +1,20 @@
+﻿@using HomeOrganiser.Core.Enums
+
+<h3>Provider: @Provider</h3>
+
+<p>Contract Length: @ContractLength</p>
+<p>Current Price: @CurrentPrice</p>
+
+@code {
+    [Parameter]
+    public EUltityType UtilityType { get; set; }
+
+    [Parameter]
+    public string Provider { get; set; }
+
+    [Parameter]
+    public int ContractLength { get; set; }
+
+    [Parameter]
+    public float CurrentPrice { get; set; }
+}
