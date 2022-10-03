@@ -1,8 +1,24 @@
 ﻿@page "/"
 @using HomeOrganiser.Components
+@using HomeOrganiser.Models
 
 <PageTitle>Dashboard</PageTitle>
 
 <h1>Dashboard</h1>
 
-<UtilityCard UtilityType="Core.Enums.EUltityType.Gas" ContractLength="12" CurrentPrice="22.39f" Provider="Octopus" />
+<div class="d-flex justify-content-between">
+    <UtilityCard Class="m-1" Utility="utility" />
+    <UtilityCard Class="m-1" Utility="utility"/>
+</div>
+
+@code {
+    private UtilityModel utility = new UtilityModel()
+        {
+            UtilityType = Core.Enums.EUtilityType.Gas,
+            ContractLength = 12,
+            CurrentPrice = 22.39f,
+            Provider = "Octopus",
+            ContractEndDate = DateTime.Now,
+            NotificationTime = 2
+        };
+}

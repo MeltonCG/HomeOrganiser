@@ -136,3 +136,6 @@ $RECYCLE.BIN/
 .DS_Store
 
 _NCrunch*
+*.dll
+
+HomeOrganiser/bin/Debug/net6.0/

@@ -1,6 +1,6 @@
 ﻿namespace HomeOrganiser.Core.Enums
 {
-    public enum EUltityType
+    public enum EUtilityType
     {
         Gas,
         Electric,
