@@ -1,3 +1,5 @@
+using HomeOrganiser.Core.Interfaces;
+using HomeOrganiser.Core.Services;
 using HomeOrganiser.Data;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
@@ -7,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddSingleton<WeatherForecastService>();
+builder.Services.AddTransient<IUtilityService, UtilityService>();
 
 var app = builder.Build();
 
