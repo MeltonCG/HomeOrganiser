@@ -13,7 +13,7 @@ namespace HomeOrganiser.Core.Services
     {
         public async Task<List<Utility>> GetAllUtilities()
         {
-            throw new NotImplementedException();
+            return new List<Utility>();
         }
 
         public async Task<List<Utility>> GetAllUtilitiesByType(EUtilityType utilityType)

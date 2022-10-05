@@ -1,19 +1,35 @@
 ﻿@page "/"
+@using AutoMapper
 @using HomeOrganiser.Components
 @using HomeOrganiser.Core.Interfaces
 @using HomeOrganiser.Models
 
 @inject IUtilityService _utilityService
+@inject IMapper _mapper
 
 <PageTitle>Dashboard</PageTitle>
 
 <h1>Dashboard</h1>
 
-<div class="d-flex justify-content-between">
-    @foreach(var utility in utilityModels)
-    {
-        <UtilityCard Class="m-1" Utility="utility" />
-    }
+<div class="card">
+    <div class="card-header">
+        <h4>Utilities</h4>
+    </div>
+    <div class="card-body">
+        @if (utilityModels.Count > 0)
+        {
+            <div class="d-flex justify-content-between">
+                @foreach (var utility in utilityModels)
+                {
+                    <UtilityCard Class="m-1" Utility="utility" />
+                }
+            </div>
+        }
+        else
+        {
+            <h5>No Utilities added</h5>
+        }
+    </div>
 </div>
 
 @code {
@@ -24,6 +40,6 @@
         var utilities = await _utilityService.GetAllUtilities();
 
         // map from entity to model
-        //utility =         
+        utilityModels = _mapper.Map<List<UtilityModel>>(utilities);
     }
 }

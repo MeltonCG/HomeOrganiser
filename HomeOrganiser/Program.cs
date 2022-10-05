@@ -1,6 +1,8 @@
+using AutoMapper;
 using HomeOrganiser.Core.Interfaces;
 using HomeOrganiser.Core.Services;
 using HomeOrganiser.Data;
+using HomeOrganiser.Mappers;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 
@@ -9,7 +11,20 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
+
+var mapperConfiguration = new MapperConfiguration(configuration =>
+{
+    configuration.AddProfile(new UtilityProfile());
+});
+
+var mapper = mapperConfiguration.CreateMapper();
+
+builder.Services.AddSingleton(mapper);
+
 builder.Services.AddTransient<IUtilityService, UtilityService>();
+
+
+
 
 var app = builder.Build();
 
