@@ -5,7 +5,7 @@ VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeOrganiser", "HomeOrganiser\HomeOrganiser.csproj", "{41648965-CCA1-46C0-AC2C-A500BB8CBFF8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeOrganiser.Core", "HomeOrganiser.Core\HomeOrganiser.Core.csproj", "{102F76ED-E1F5-46B9-B45A-CB3BE0C2C7C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeOrganiser.Core", "HomeOrganiser.Core\HomeOrganiser.Core.csproj", "{102F76ED-E1F5-46B9-B45A-CB3BE0C2C7C2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
