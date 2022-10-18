@@ -1,4 +1,5 @@
 using AutoMapper;
+using HomeOrganiser.Data;
 using HomeOrganiser.Data.Repositories.UtilityRepo;
 using HomeOrganiser.Mappers;
 using HomeOrganiser.Service.Interfaces;
@@ -16,6 +17,10 @@ var mapperConfiguration = new MapperConfiguration(configuration =>
 });
 
 var mapper = mapperConfiguration.CreateMapper();
+
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+            options.UseSqlServer(
+                builder.Configuration.GetConnectionString("DefaultConnection")), ServiceLifetime.Transient);
 
 builder.Services.AddSingleton(mapper);
 

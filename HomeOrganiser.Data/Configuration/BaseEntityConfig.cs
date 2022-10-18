@@ -1,18 +1,27 @@
 ﻿using HomeOrganiser.Core.Entities;
-using System.Data.Entity.ModelConfiguration;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace HomeOrganiser.Data.Configuration
 {
-    public abstract class BaseEntityConfig<T> : EntityTypeConfiguration<T> where T : BaseEntity
+    public abstract class BaseEntityConfig<T> : IEntityTypeConfiguration<T> where T : BaseEntity
     {
-        public BaseEntityConfig()
+        public void Configure(EntityTypeBuilder<T> builder)
         {
-            this.Property(e => e.Id)
+            builder.Property(e => e.Id)
+                .ValueGeneratedOnAdd()
                 .HasColumnName("ID");
 
-            this.Property(e => e.CreatedOn).HasColumnType("datetime");
+            builder.Property(e => e.CreatedOn).HasColumnType("datetime");
 
-            this.Property(e => e.ModifiedOn).HasColumnType("datetime");
+            builder.Property(e => e.ModifiedOn).HasColumnType("datetime");
+
+            ConfigureEntity(builder);
+        }
+
+        protected virtual void ConfigureEntity(EntityTypeBuilder<T> builder)
+        {
+
         }
     }
 }
