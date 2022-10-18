@@ -1,6 +1,6 @@
 ﻿using HomeOrganiser.Core.Entities;
 using HomeOrganiser.Data.Configuration;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 
 namespace HomeOrganiser.Data
 {
@@ -8,9 +8,9 @@ namespace HomeOrganiser.Data
     {
         public virtual DbSet<Utility> Utilities { get; set; }
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Configurations.Add(new UtilityConfig());
+            modelBuilder.ApplyConfiguration(new UtilityConfig());
 
             base.OnModelCreating(modelBuilder);
         }

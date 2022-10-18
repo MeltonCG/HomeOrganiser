@@ -1,10 +1,8 @@
 using AutoMapper;
-using HomeOrganiser.Core.Interfaces;
-using HomeOrganiser.Core.Services;
-using HomeOrganiser.Data;
+using HomeOrganiser.Data.Repositories.UtilityRepo;
 using HomeOrganiser.Mappers;
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
+using HomeOrganiser.Service.Interfaces;
+using HomeOrganiser.Service.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +20,7 @@ var mapper = mapperConfiguration.CreateMapper();
 builder.Services.AddSingleton(mapper);
 
 builder.Services.AddTransient<IUtilityService, UtilityService>();
+builder.Services.AddTransient<IUtilityRepository, UtilityRepository>();
 
 
 

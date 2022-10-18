@@ -1,16 +1,17 @@
 ﻿using HomeOrganiser.Core.Entities;
 using HomeOrganiser.Core.Enums;
-using HomeOrganiser.Core.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using HomeOrganiser.Data.Repositories.UtilityRepo;
+using HomeOrganiser.Service.Interfaces;
 
-namespace HomeOrganiser.Core.Services
+namespace HomeOrganiser.Service.Services
 {
     public class UtilityService : IUtilityService
     {
+        public UtilityService(IUtilityRepository utilityRepo)
+        {
+
+        }
+
         public async Task<List<Utility>> GetAllUtilities()
         {
             return new List<Utility>();

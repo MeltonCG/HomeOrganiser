@@ -1,9 +1,10 @@
 ﻿namespace HomeOrganiser.Data.Migrations
 {
+    using Microsoft.EntityFrameworkCore.Migrations;
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialCreate : DbMigration
+    public partial class InitialCreate : Migration
     {
         public override void Up()
         {

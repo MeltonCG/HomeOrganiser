@@ -1,28 +1,28 @@
 ﻿using HomeOrganiser.Core.Entities;
-using System.Data.Entity.ModelConfiguration;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace HomeOrganiser.Data.Configuration
 {
-    public class UtilityConfig : EntityTypeConfiguration<Utility>
+    public class UtilityConfig : BaseEntityConfig<Utility>
     {
-        public UtilityConfig()
+        protected override void ConfigureEntity(EntityTypeBuilder<Utility> builder)
         {
-            this.ToTable("Utilities");
+            builder.ToTable("Utilities");
 
-            this.Property(e => e.UtilityType)
+            builder.Property(e => e.UtilityType)
                 .IsRequired();
 
-            this.Property(e => e.Provider)
+            builder.Property(e => e.Provider)
                 .IsRequired()
                 .HasMaxLength(50);
 
-            this.Property(e => e.CurrentPrice)
+            builder.Property(e => e.CurrentPrice)
                 .IsRequired();
 
-            this.Property(e => e.ContractLength)
+            builder.Property(e => e.ContractLength)
                 .IsRequired();
 
-            this.Property(e => e.ContractEndDate)
+            builder.Property(e => e.ContractEndDate)
                 .IsRequired();
         }
     }

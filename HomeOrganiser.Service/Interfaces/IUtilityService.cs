@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HomeOrganiser.Core.Interfaces
+namespace HomeOrganiser.Service.Interfaces
 {
     public interface IUtilityService
     {
