@@ -1,6 +1,5 @@
 ﻿using HomeOrganiser.Core.Entities;
-using System.Data.Entity;
-using System.Data.Entity.Migrations;
+using Microsoft.EntityFrameworkCore;
 
 namespace HomeOrganiser.Data.Repositories
 {
@@ -50,7 +49,7 @@ namespace HomeOrganiser.Data.Repositories
 
         public async Task UpdateRange<T>(T[] entities) where T : BaseEntity
         {
-            _dbContext.Set<T>().AddOrUpdate(entities);
+            _dbContext.Set<T>().UpdateRange(entities);
             await _dbContext.SaveChangesAsync();
         }
 

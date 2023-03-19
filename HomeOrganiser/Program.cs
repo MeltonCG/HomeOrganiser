@@ -4,6 +4,7 @@ using HomeOrganiser.Data.Repositories.UtilityRepo;
 using HomeOrganiser.Mappers;
 using HomeOrganiser.Service.Interfaces;
 using HomeOrganiser.Service.Services;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,7 +21,7 @@ var mapper = mapperConfiguration.CreateMapper();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(
-                builder.Configuration.GetConnectionString("DefaultConnection")), ServiceLifetime.Transient);
+                builder.Configuration.GetConnectionString("HomeOrgDatabase")), ServiceLifetime.Transient);
 
 builder.Services.AddSingleton(mapper);
 
