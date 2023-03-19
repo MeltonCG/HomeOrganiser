@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeOrganiser.Core", "HomeO
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeOrganiser.Data", "HomeOrganiser.Data\HomeOrganiser.Data.csproj", "{6FB75217-4A90-402C-AA42-6E5DC9F1C065}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeOrganiser.Service", "HomeOrganiser.Service\HomeOrganiser.Service.csproj", "{231EDF30-2928-49E9-A84F-C98590C37C06}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MELT.BlazorComponents", "MELT.BlazorComponents\MELT.BlazorComponents.csproj", "{AAC9D9A1-E8F4-4E76-9E23-EF4B18398BE4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{6FB75217-4A90-402C-AA42-6E5DC9F1C065}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6FB75217-4A90-402C-AA42-6E5DC9F1C065}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6FB75217-4A90-402C-AA42-6E5DC9F1C065}.Release|Any CPU.Build.0 = Release|Any CPU
-		{231EDF30-2928-49E9-A84F-C98590C37C06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{231EDF30-2928-49E9-A84F-C98590C37C06}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{231EDF30-2928-49E9-A84F-C98590C37C06}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{231EDF30-2928-49E9-A84F-C98590C37C06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AAC9D9A1-E8F4-4E76-9E23-EF4B18398BE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAC9D9A1-E8F4-4E76-9E23-EF4B18398BE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAC9D9A1-E8F4-4E76-9E23-EF4B18398BE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAC9D9A1-E8F4-4E76-9E23-EF4B18398BE4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,14 @@
+﻿@using MELT.BlazorComponents.Enums
+
+<div class="d-flex justify-content-center align-items-center">
+    <Icon Glyph="@Icon" Size="EIconSize.X3" Weight="EIconWeight.Regular" FixedWidth="true" Class="text-muted"/>
+    <h4 class="text-muted mb-0">@Text</h4>
+</div>
+
+@code {
+    [Parameter]
+    public string Text { get; set; }
+
+    [Parameter]
+    public string Icon { get; set; }
+}

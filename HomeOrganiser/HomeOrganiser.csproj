@@ -9,7 +9,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\HomeOrganiser.Core\HomeOrganiser.Core.csproj" />
-    <ProjectReference Include="..\HomeOrganiser.Service\HomeOrganiser.Service.csproj" />
+    <ProjectReference Include="..\HomeOrganiser.Data\HomeOrganiser.Data.csproj" />
+    <ProjectReference Include="..\MELT.BlazorComponents\MELT.BlazorComponents.csproj" />
   </ItemGroup>
 
   <ItemGroup>

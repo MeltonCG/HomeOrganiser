@@ -1,46 +1,11 @@
-﻿@page "/"
-@using AutoMapper
-@using HomeOrganiser.Components
-@using HomeOrganiser.Service.Interfaces
-@using HomeOrganiser.Enums
-@using HomeOrganiser.Models
-
-@inject IUtilityService _utilityService
-@inject IMapper _mapper
+﻿@attribute [Route(PageRoutes.HOME)]
 
 <PageTitle>Dashboard</PageTitle>
 
 <h1>Dashboard</h1>
 
-<div class="card">
-    <div class="card-header">
-        <h4>Utilities</h4>
-    </div>
-    <div class="card-body">
-        @if (utilityModels.Count > 0)
-        {
-            <div class="d-flex justify-content-between">
-                @foreach (var utility in utilityModels)
-                {
-                    <UtilityCard Class="m-1" Utility="utility" />
-                }
-            </div>
-        }
-        else
-        {
-            <NoData Text="No Utilities Added" Icon="circle-xmark"/>
-        }
-    </div>
-</div>
+<UtilityPanel />
 
 @code {
-    private List<UtilityModel> utilityModels = new List<UtilityModel>();
-
-    protected override async Task OnInitializedAsync()
-    {
-        var utilities = await _utilityService.GetAllUtilities();
-
-        // map from entity to model
-        utilityModels = _mapper.Map<List<UtilityModel>>(utilities);
-    }
+    
 }

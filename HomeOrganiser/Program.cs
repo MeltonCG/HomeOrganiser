@@ -1,9 +1,10 @@
 using AutoMapper;
+using HomeOrganiser.Core.Interfaces;
+using HomeOrganiser.Core.Interfaces.Repositories;
+using HomeOrganiser.Core.Services;
 using HomeOrganiser.Data;
 using HomeOrganiser.Data.Repositories.UtilityRepo;
 using HomeOrganiser.Mappers;
-using HomeOrganiser.Service.Interfaces;
-using HomeOrganiser.Service.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

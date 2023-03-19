@@ -16,11 +16,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HomeOrganiser.Core\HomeOrganiser.Core.csproj" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Migrations\" />
+    <ProjectReference Include="..\HomeOrganiser.Core\HomeOrganiser.Core.csproj" />
   </ItemGroup>
 
 </Project>

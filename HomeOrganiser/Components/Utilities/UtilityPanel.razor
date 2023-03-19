@@ -1,0 +1,35 @@
+﻿@inject IUtilityService _utilityService
+@inject IMapper _mapper
+
+<div class="card">
+    <div class="card-header">
+        <h4>Utilities</h4>
+    </div>
+    <div class="card-body">
+        @if (utilityModels.Count > 0)
+        {
+            <div class="d-flex justify-content-between">
+                @foreach (var utility in utilityModels)
+                {
+                    <UtilityCard Class="m-1" Utility="utility" />
+                }
+            </div>
+        }
+        else
+        {
+            <NoData Text="No Utilities Added" Icon="circle-xmark" />
+        }
+    </div>
+</div>
+
+@code {
+    private List<UtilityModel> utilityModels = new List<UtilityModel>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        var utilities = await _utilityService.GetAllUtilities();
+
+        // map from entity to model
+        utilityModels = _mapper.Map<List<UtilityModel>>(utilities);
+    }
+}
