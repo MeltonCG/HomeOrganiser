@@ -2,8 +2,9 @@
 @inject IMapper _mapper
 
 <div class="card">
-    <div class="card-header">
-        <h4>Utilities</h4>
+    <div class="card-header d-flex">
+        <h4 class="flex-fill">Utilities</h4>
+        <MeltButton Size="ButtonEnums.EButtonSize.SM" Variant="ButtonEnums.EButtonVariant.SuccessOutline" Icon="plus">Create</MeltButton>
     </div>
     <div class="card-body">
         @if (utilityModels.Count > 0)

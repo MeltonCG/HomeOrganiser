@@ -1,0 +1,54 @@
+﻿@using static MELT.BlazorComponents.Enums.ButtonEnums
+@inherits MeltComponentBase
+
+@if(!Attributes.ContainsKey("href"))
+{
+    <button class="@ElementClass" @attributes="Attributes">
+        @if (!string.IsNullOrEmpty(Icon) && !IsBusy) 
+        { 
+            <Icon Glyph="@Icon"/>
+        }
+        @if (IsBusy)
+        {
+            <Icon Glyph="spinner-third" Class="fa-spin" Weight="EIconWeight.Duotone" />
+        }
+        @ChildContent
+    </button>
+}
+else
+{
+    <a class="@ElementClass" @attributes="Attributes">
+        @if (!string.IsNullOrEmpty(Icon) && !IsBusy)
+        {
+            <Icon Glyph="@Icon"/>
+        }
+        @if (IsBusy)
+        {
+            <Icon Glyph="spinner-third" Class="fa-spin" Weight="EIconWeight.Duotone" />
+        }
+        @ChildContent
+    </a>
+}
+
+@code {
+    [Parameter]
+    public EButtonSize Size { get; set; } = EButtonSize.Default;
+
+    [Parameter]
+    public EButtonVariant Variant { get; set; } = EButtonVariant.Default;
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public bool IsBusy { get; set; } = false;
+
+    [Parameter]
+    public string Icon { get; set; }
+
+    protected string ElementClass => new CssBuilder("btn")
+      .AddClass(Variant.GetDisplayDescription())
+      .AddClass(Size.GetDisplayDescription(), Size != EButtonSize.Default)
+      .AddClass(Class)
+      .Build();
+}

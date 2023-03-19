@@ -1,6 +1,4 @@
-﻿@using MELT.BlazorComponents.Enums
-@using MELT.BlazorComponents.Extensions
-@using MELT.BlazorComponents.Utility
+﻿@inherits MeltComponentBase
 
 <i class="@ElementClass"></i>
 
@@ -13,9 +11,6 @@
 
     [Parameter]
     public EIconSize Size { get; set; } = EIconSize.Default;
-
-    [Parameter]
-    public string Class { get; set; }
 
     [Parameter]
     public bool FixedWidth { get; set; } = true;
