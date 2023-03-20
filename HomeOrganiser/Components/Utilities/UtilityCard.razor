@@ -1,0 +1,67 @@
+﻿@using HomeOrganiser.Core.Enums
+@using HomeOrganiser.Models
+
+<div class="card @Class">
+    <div class="card-header">
+        <div class="d-flex">
+            <b class="flex-fill">@Utility.UtilityType</b>
+            <b class="text-muted">Utility</b>
+        </div>
+    </div>
+    <div class="card-body">
+        <h3>@Utility.Provider</h3>
+
+        <div class="d-flex justify-content-between">
+            <div>
+                <p>
+                    <span class="text-muted">
+                        Contract Length: 
+                    </span>
+                    <b>
+                        @Utility.ContractLength months
+                    </b>
+                </p>
+                <p>
+                    <span class="text-muted">
+                        Current Price:  
+                    </span>
+                    <b>
+                        @(Utility.CurrentPrice) p/kWh
+                    </b>
+                </p>
+            </div>
+            <div>
+                <p>
+                    <span class="text-muted">
+                        Contract End Date: 
+                    </span>
+                    <b>
+                        @Utility.ContractEndDate?.ToShortDateString()
+                    </b>
+                </p>
+                <p>
+                    @if(Utility.NotificationTime.HasValue)
+                    {
+                        <b>
+                            Notify @(Utility.NotificationTime) months before End Date
+                        </b>
+                    } else
+                    {
+                       <span class="text-muted">
+                          No Notification Set
+                        </span> 
+                    }
+                </p>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public string Class { get; set; }
+
+    [Parameter]
+    public UtilityModel Utility { get; set; }
+}

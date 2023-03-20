@@ -4,10 +4,18 @@
 <div class="card">
     <div class="card-header d-flex">
         <h4 class="flex-fill">Utilities</h4>
-        <MeltButton Size="ButtonEnums.EButtonSize.SM" Variant="ButtonEnums.EButtonVariant.SuccessOutline" Icon="plus">Create</MeltButton>
+        <MeltButton Size="ButtonEnums.EButtonSize.SM" Variant="ButtonEnums.EButtonVariant.SuccessOutline" Icon="plus" @onclick="() => editing = true">Create</MeltButton>
     </div>
     <div class="card-body">
-        @if (utilityModels.Count > 0)
+        @if (loading)
+        {
+            <MeltLoading Class="text-primary" LoadingMessage="Loading..."/>
+        }
+        else if(editing)
+        {
+            <UtilityAddEdit Utility="utilityToEdit" DoneEditing="DoneEditing"/>
+        }
+        else if (utilityModels.Count > 0)
         {
             <div class="d-flex justify-content-between">
                 @foreach (var utility in utilityModels)
@@ -26,11 +34,32 @@
 @code {
     private List<UtilityModel> utilityModels = new List<UtilityModel>();
 
+    private bool editing = false;
+    private bool loading = false;
+    private UtilityModel? utilityToEdit = null;
+
+    private async Task DoneEditing()
+    {
+        editing = false;
+        utilityToEdit = null;
+
+        await RefreshUtilities();
+    }
+
     protected override async Task OnInitializedAsync()
     {
+        await RefreshUtilities();
+    }
+
+    private async Task RefreshUtilities()
+    {
+        loading = true;
+
         var utilities = await _utilityService.GetAllUtilities();
 
         // map from entity to model
         utilityModels = _mapper.Map<List<UtilityModel>>(utilities);
+
+        loading = false;
     }
 }

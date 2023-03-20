@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeOrganiser.Core", "HomeO
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeOrganiser.Data", "HomeOrganiser.Data\HomeOrganiser.Data.csproj", "{6FB75217-4A90-402C-AA42-6E5DC9F1C065}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MELT.BlazorComponents", "MELT.BlazorComponents\MELT.BlazorComponents.csproj", "{AAC9D9A1-E8F4-4E76-9E23-EF4B18398BE4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MELT.BlazorComponents", "MELT.BlazorComponents\MELT.BlazorComponents.csproj", "{AAC9D9A1-E8F4-4E76-9E23-EF4B18398BE4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

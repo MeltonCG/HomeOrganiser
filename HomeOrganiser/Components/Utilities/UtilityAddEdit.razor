@@ -1,0 +1,64 @@
+﻿
+
+<EditForm Model="@Utility" OnSubmit="@SaveUtility">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+
+    <div class="form-floating">
+        <InputText id="provider" @bind-Value="Utility.Provider" class="form-control form-control-sm" />
+        <label for="provider">Provider</label>
+    </div>
+    <div class="form-floating">
+        <InputSelect id="utilityType" @bind-Value="Utility.UtilityType" class="form-select form-select-sm">
+            @foreach (var value in Enum.GetValues<EUtilityType>())
+            {
+                <option value="@value">@value</option>
+            }
+        </InputSelect>
+        <label for="utilityType" class="form-label">Utility Type</label>
+    </div>
+    <div class="form-floating">
+        <InputNumber id="contractLength" @bind-Value="Utility.ContractLength" class="form-control form-control-sm" />
+        <label for="contractLength">Contract Length</label>
+    </div>
+    <div class="form-floating">
+        <InputDate id="contractEndDate" @bind-Value="Utility.ContractEndDate" class="form-control form-control-sm" />
+        <label for="contractEndDate">Contract End Date</label>
+    </div>
+    
+    
+    
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</EditForm>
+
+
+
+@code {
+    [Parameter]
+    public EventCallback DoneEditing { get; set; }
+
+    [Parameter]
+    public UtilityModel? Utility { get; set; }
+
+    protected override void OnInitialized()
+    {
+        if (Utility == null)
+        {
+            Utility = new UtilityModel();
+        }
+    }
+
+    private async Task SaveUtility()
+    {
+        var test = Utility;
+
+        await DoneEditing.InvokeAsync();
+    }
+
+    private async Task DeleteUtility()
+    {
+
+    }
+}
