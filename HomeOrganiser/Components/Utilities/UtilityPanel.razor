@@ -1,4 +1,5 @@
-﻿@inject IUtilityService _utilityService
+﻿@inherits DataAccessComponentBase
+
 @inject IMapper _mapper
 
 <div class="card">
@@ -13,14 +14,14 @@
         }
         else if(editing)
         {
-            <UtilityAddEdit Utility="utilityToEdit" DoneEditing="DoneEditing"/>
+            <UtilityAddEdit UtilityModel="utilityToEdit" DoneEditing="DoneEditing" />
         }
         else if (utilityModels.Count > 0)
         {
             <div class="d-flex justify-content-between">
                 @foreach (var utility in utilityModels)
                 {
-                    <UtilityCard Class="m-1" Utility="utility" />
+                    <UtilityCard Class="m-1" Utility="utility" UtilitySelected="UtilitySelected"/>
                 }
             </div>
         }
@@ -43,8 +44,51 @@
         editing = false;
         utilityToEdit = null;
 
+        Dispose();
+
         await RefreshUtilities();
     }
+
+    private void UtilitySelected(UtilityModel model)
+    {
+        utilityToEdit = model;
+        editing = true;
+    }
+
+    //private async Task SaveUtility(UtilityModel model)
+    //{
+    //    var isNew = model.Id == null || model.Id == Guid.Empty;
+
+    //    if (isNew)
+    //    {
+    //        var entity = new Utility();
+
+    //        _mapper.Map(model, entity);
+
+    //        await EntityRepository.Add(entity);
+    //    }
+    //    else
+    //    {
+    //        Utility? entity = await EntityRepository.GetById<Utility>(model.Id.Value);
+
+    //        if (entity != null)
+    //        {
+    //            _mapper.Map(model, entity);
+
+    //            await EntityRepository.Update(entity);
+    //        }
+    //    }
+    //}
+
+    //private async Task DeleteUtility(UtilityModel model)
+    //{
+    //    Utility? entity = await EntityRepository.GetById<Utility>(model.Id.Value);
+
+    //    if (entity != null)
+    //    {
+    //        await EntityRepository.Delete(entity);
+    //    }
+    //}
 
     protected override async Task OnInitializedAsync()
     {
@@ -55,7 +99,7 @@
     {
         loading = true;
 
-        var utilities = await _utilityService.GetAllUtilities();
+        var utilities = await EntityRepository.ListAll<Utility>();
 
         // map from entity to model
         utilityModels = _mapper.Map<List<UtilityModel>>(utilities);

@@ -1,13 +1,12 @@
 ﻿using HomeOrganiser.Core.Entities;
 using HomeOrganiser.Core.Enums;
 using HomeOrganiser.Core.Interfaces;
-using HomeOrganiser.Core.Interfaces.Repositories;
 
 namespace HomeOrganiser.Core.Services
 {
     public class UtilityService : IUtilityService
     {
-        public UtilityService(IUtilityRepository utilityRepo)
+        public UtilityService()
         {
 
         }

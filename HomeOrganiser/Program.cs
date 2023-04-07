@@ -1,9 +1,8 @@
 using AutoMapper;
 using HomeOrganiser.Core.Interfaces;
-using HomeOrganiser.Core.Interfaces.Repositories;
 using HomeOrganiser.Core.Services;
 using HomeOrganiser.Data;
-using HomeOrganiser.Data.Repositories.UtilityRepo;
+using HomeOrganiser.Data.Repositories;
 using HomeOrganiser.Mappers;
 using Microsoft.EntityFrameworkCore;
 
@@ -26,8 +25,9 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 builder.Services.AddSingleton(mapper);
 
-builder.Services.AddTransient<IUtilityService, UtilityService>();
-builder.Services.AddTransient<IUtilityRepository, UtilityRepository>();
+builder.Services.AddScoped<IUtilityService, UtilityService>();
+builder.Services.AddScoped<IEntityRepository, EntityRepository>();
+builder.Services.AddScoped<IEntityRepositoryFactory, EntityRepositoryFactory>();
 
 
 

@@ -16,15 +16,6 @@ namespace HomeOrganiser.Data.Configuration
             builder.Property(e => e.Provider)
                 .IsRequired()
                 .HasMaxLength(50);
-
-            builder.Property(e => e.CurrentPrice)
-                .IsRequired();
-
-            builder.Property(e => e.ContractLength)
-                .IsRequired();
-
-            builder.Property(e => e.ContractEndDate)
-                .IsRequired();
         }
     }
 }

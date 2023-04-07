@@ -5,6 +5,8 @@ namespace HomeOrganiser.Models
 {
     public class UtilityModel
     {
+        public Guid? Id { get; set; }
+
         [Required]
         public EUtilityType UtilityType { get; set; }
 

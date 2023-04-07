@@ -1,19 +1,21 @@
-﻿
+﻿@inherits DataAccessComponentBase
 
-<EditForm Model="@Utility" OnSubmit="@SaveUtility">
+@inject IMapper _mapper
+
+<EditForm Model="@UtilityModel" OnValidSubmit="@SaveUtility">
     <DataAnnotationsValidator />
     <ValidationSummary />
 
     <div class="row my-2">
         <div class="col-4 mb-2">
             <div class="form-floating">
-                <InputText @bind-Value="Utility.Provider" class="form-control form-control-sm" />
+                <InputText @bind-Value="UtilityModel.Provider" class="form-control form-control-sm" />
                 <label>Provider</label>
             </div>
         </div>
         <div class="col-4 mb-2">
             <div class="form-floating">
-                <InputSelect @bind-Value="Utility.UtilityType" class="form-select form-select-sm">
+                <InputSelect @bind-Value="UtilityModel.UtilityType" class="form-select form-select-sm">
                     @foreach (var value in Enum.GetValues<EUtilityType>())
                     {
                         <option value="@value">@value</option>
@@ -24,32 +26,34 @@
         </div>
         <div class="col-4 mb-2">
             <div class="form-floating">
-                <InputNumber @bind-Value="Utility.ContractLength" class="form-control form-control-sm" />
+                <InputNumber @bind-Value="UtilityModel.ContractLength" class="form-control form-control-sm" />
                 <label>Contract Length</label>
             </div>
         </div>
         <div class="col-4 mb-2">
             <div class="form-floating">
-                <InputDate @bind-Value="Utility.ContractEndDate" class="form-control form-control-sm" />
+                <InputDate @bind-Value="UtilityModel.ContractEndDate" class="form-control form-control-sm" />
                 <label>Contract End Date</label>
             </div>
         </div>
         <div class="col-4 mb-2">
             <div class="form-floating">
-                <InputNumber @bind-Value="Utility.CurrentPrice" class="form-control form-control-sm" />
+                <InputNumber @bind-Value="UtilityModel.CurrentPrice" class="form-control form-control-sm" />
                 <label>Current Price</label>
             </div>
         </div>
         <div class="col-4 mb-2">
             <div class="form-floating">
-                <InputNumber @bind-Value="Utility.NotificationTime" class="form-control form-control-sm" />
+                <InputNumber @bind-Value="UtilityModel.NotificationTime" class="form-control form-control-sm" />
                 <label>Alert Months Before</label>
             </div>
         </div>
     </div>
 
-    <div class="d-flex justify-content-end">
-        <button type="submit" class="btn btn-primary">Submit</button>
+    <div class="d-flex">
+        <MeltButton Variant="ButtonEnums.EButtonVariant.InfoOutline" IsBusy="isSaving" @onclick="() => DoneEditing.InvokeAsync()" type="button" Class="me-auto">Cancel</MeltButton>
+        <MeltButton Variant="ButtonEnums.EButtonVariant.DangerOutline" IsBusy="isSaving" @onclick="DeleteUtility" type="button" Class="mx-1">Delete</MeltButton>
+        <MeltButton type="submit" Variant="ButtonEnums.EButtonVariant.Primary" IsBusy="isSaving" Class="mx-1">Save</MeltButton>
     </div>
 </EditForm>
 
@@ -60,25 +64,68 @@
     public EventCallback DoneEditing { get; set; }
 
     [Parameter]
-    public UtilityModel? Utility { get; set; }
+    public EventCallback<UtilityModel> Save { get; set; }
+
+    [Parameter]
+    public EventCallback<UtilityModel> Delete { get; set; }
+
+    [Parameter]
+    public UtilityModel? UtilityModel { get; set; }
+
+    private bool isSaving = false;
+    private bool isNew { get; set; }
 
     protected override void OnInitialized()
     {
-        if (Utility == null)
+        if (UtilityModel == null)
         {
-            Utility = new UtilityModel();
+            UtilityModel = new UtilityModel();
+            isNew = true;
+        }
+        else
+        {
+            isNew = false;
         }
     }
 
     private async Task SaveUtility()
     {
-        var test = Utility;
+        isSaving = true;
+
+        if (isNew)
+        {
+            var entity = new Utility();
+
+            _mapper.Map(UtilityModel, entity);
+
+            await EntityRepository.Add(entity);
+        }
+        else
+        {
+            Utility? entity = await EntityRepository.GetById<Utility>(UtilityModel.Id.Value);
+
+            if (entity != null)
+            {
+                _mapper.Map(UtilityModel, entity);
+
+                await EntityRepository.Update(entity);
+            }
+        }
 
         await DoneEditing.InvokeAsync();
     }
 
     private async Task DeleteUtility()
     {
+        isSaving = true;
 
+        Utility? entity = await EntityRepository.GetById<Utility>(UtilityModel.Id.Value);
+
+        if (entity != null)
+        {
+            await EntityRepository.Delete(entity);
+        }
+
+        await DoneEditing.InvokeAsync();
     }
 }

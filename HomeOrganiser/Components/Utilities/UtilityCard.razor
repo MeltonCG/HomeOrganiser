@@ -1,7 +1,7 @@
 ﻿@using HomeOrganiser.Core.Enums
 @using HomeOrganiser.Models
 
-<div class="card @Class">
+<div class="card @Class" @onclick="() => UtilitySelected.InvokeAsync(Utility)">
     <div class="card-header">
         <div class="d-flex">
             <b class="flex-fill">@Utility.UtilityType</b>
@@ -64,4 +64,7 @@
 
     [Parameter]
     public UtilityModel Utility { get; set; }
+
+    [Parameter]
+    public EventCallback<UtilityModel> UtilitySelected { get; set; }
 }

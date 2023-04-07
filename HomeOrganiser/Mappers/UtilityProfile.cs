@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using HomeOrganiser.Core.Entities;
+using HomeOrganiser.Models;
 
 namespace HomeOrganiser.Mappers
 {
@@ -7,8 +8,8 @@ namespace HomeOrganiser.Mappers
     {
         public UtilityProfile()
         {
-            CreateMap<UtilityProfile, Utility>();
-            CreateMap<Utility, UtilityProfile>();
+            CreateMap<UtilityModel, Utility>();
+            CreateMap<Utility, UtilityModel>();
         }
     }
 }
