@@ -5,8 +5,8 @@
 {
     <button class="@ElementClass" @attributes="Attributes">
         @if (!string.IsNullOrEmpty(Icon) && !IsBusy) 
-        { 
-            <Icon Glyph="@Icon"/>
+        {
+            <Icon Glyph="@Icon" Class="pe-1" />
         }
         @if (IsBusy)
         {
@@ -20,7 +20,7 @@ else
     <a class="@ElementClass" @attributes="Attributes">
         @if (!string.IsNullOrEmpty(Icon) && !IsBusy)
         {
-            <Icon Glyph="@Icon"/>
+            <Icon Glyph="@Icon" Class="pe-1" />
         }
         @if (IsBusy)
         {
