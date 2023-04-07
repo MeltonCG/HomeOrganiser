@@ -5,7 +5,7 @@
 <div class="card">
     <div class="card-header d-flex">
         <h4 class="flex-fill">Utilities</h4>
-        <MeltButton Size="ButtonEnums.EButtonSize.SM" Variant="ButtonEnums.EButtonVariant.SuccessOutline" Icon="plus" @onclick="() => editing = true">Create</MeltButton>
+        <MeltButton Size="EButtonSize.SM" Variant="EButtonVariant.SuccessOutline" Icon="plus" @onclick="() => editing = true">Create</MeltButton>
     </div>
     <div class="card-body">
         @if (loading)
@@ -44,6 +44,7 @@
         editing = false;
         utilityToEdit = null;
 
+        // Dispose of the base Entity Repo so we get a fresh DB Context
         Dispose();
 
         await RefreshUtilities();
@@ -54,41 +55,6 @@
         utilityToEdit = model;
         editing = true;
     }
-
-    //private async Task SaveUtility(UtilityModel model)
-    //{
-    //    var isNew = model.Id == null || model.Id == Guid.Empty;
-
-    //    if (isNew)
-    //    {
-    //        var entity = new Utility();
-
-    //        _mapper.Map(model, entity);
-
-    //        await EntityRepository.Add(entity);
-    //    }
-    //    else
-    //    {
-    //        Utility? entity = await EntityRepository.GetById<Utility>(model.Id.Value);
-
-    //        if (entity != null)
-    //        {
-    //            _mapper.Map(model, entity);
-
-    //            await EntityRepository.Update(entity);
-    //        }
-    //    }
-    //}
-
-    //private async Task DeleteUtility(UtilityModel model)
-    //{
-    //    Utility? entity = await EntityRepository.GetById<Utility>(model.Id.Value);
-
-    //    if (entity != null)
-    //    {
-    //        await EntityRepository.Delete(entity);
-    //    }
-    //}
 
     protected override async Task OnInitializedAsync()
     {

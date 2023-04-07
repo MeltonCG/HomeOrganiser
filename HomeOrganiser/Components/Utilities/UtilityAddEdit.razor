@@ -1,5 +1,4 @@
 ﻿@inherits DataAccessComponentBase
-
 @inject IMapper _mapper
 
 <EditForm Model="@UtilityModel" OnValidSubmit="@SaveUtility">
@@ -51,9 +50,9 @@
     </div>
 
     <div class="d-flex">
-        <MeltButton Variant="ButtonEnums.EButtonVariant.InfoOutline" IsBusy="isSaving" @onclick="() => DoneEditing.InvokeAsync()" type="button" Class="me-auto">Cancel</MeltButton>
-        <MeltButton Variant="ButtonEnums.EButtonVariant.DangerOutline" IsBusy="isSaving" @onclick="DeleteUtility" type="button" Class="mx-1">Delete</MeltButton>
-        <MeltButton type="submit" Variant="ButtonEnums.EButtonVariant.Primary" IsBusy="isSaving" Class="mx-1">Save</MeltButton>
+        <MeltButton Variant="EButtonVariant.InfoOutline" IsBusy="isSaving" @onclick="() => DoneEditing.InvokeAsync()" type="button" Class="me-auto">Cancel</MeltButton>
+        <MeltButton Variant="EButtonVariant.DangerOutline" IsBusy="isSaving" @onclick="DeleteUtility" type="button" Class="mx-1">Delete</MeltButton>
+        <MeltButton Variant="EButtonVariant.Primary" IsBusy="isSaving" Class="mx-1" type="submit">Save</MeltButton>
     </div>
 </EditForm>
 
