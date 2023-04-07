@@ -1,13 +1,36 @@
+using AutoMapper;
+using HomeOrganiser.Core.Interfaces;
+using HomeOrganiser.Core.Services;
 using HomeOrganiser.Data;
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
+using HomeOrganiser.Data.Repositories;
+using HomeOrganiser.Mappers;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddSingleton<WeatherForecastService>();
+
+var mapperConfiguration = new MapperConfiguration(configuration =>
+{
+    configuration.AddProfile(new UtilityProfile());
+});
+
+var mapper = mapperConfiguration.CreateMapper();
+
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+            options.UseSqlServer(
+                builder.Configuration.GetConnectionString("HomeOrgDatabase")), ServiceLifetime.Transient);
+
+builder.Services.AddSingleton(mapper);
+
+builder.Services.AddScoped<IUtilityService, UtilityService>();
+builder.Services.AddScoped<IEntityRepository, EntityRepository>();
+builder.Services.AddScoped<IEntityRepositoryFactory, EntityRepositoryFactory>();
+
+
+
 
 var app = builder.Build();
 

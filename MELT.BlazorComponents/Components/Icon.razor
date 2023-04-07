@@ -1,0 +1,25 @@
+﻿@inherits MeltComponentBase
+
+<i class="@ElementClass"></i>
+
+@code {
+    [Parameter]
+    public string Glyph { get; set; }
+
+    [Parameter]
+    public EIconWeight Weight { get; set; } = EIconWeight.Light;
+
+    [Parameter]
+    public EIconSize Size { get; set; } = EIconSize.Default;
+
+    [Parameter]
+    public bool FixedWidth { get; set; } = true;
+
+    protected string ElementClass => new CssBuilder()
+        .AddClass("fa-fw", FixedWidth)
+        .AddClass(Weight.GetDisplayDescription())
+        .AddClass(Size.GetDisplayDescription(), Size != EIconSize.Default)
+        .AddClass(string.Format("fa-{0}", Glyph))
+        .AddClass(Class)
+        .Build();    
+}

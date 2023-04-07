@@ -1,0 +1,75 @@
+﻿@inherits DataAccessComponentBase
+
+@inject IMapper _mapper
+
+<div class="card">
+    <div class="card-header d-flex">
+        <h4 class="flex-fill">Utilities</h4>
+        <MeltButton Size="EButtonSize.SM" Variant="EButtonVariant.SuccessOutline" Icon="plus" @onclick="() => editing = true">Create</MeltButton>
+    </div>
+    <div class="card-body">
+        @if (loading)
+        {
+            <MeltLoading Class="text-primary" LoadingMessage="Loading..."/>
+        }
+        else if(editing)
+        {
+            <UtilityAddEdit UtilityModel="utilityToEdit" DoneEditing="DoneEditing" />
+        }
+        else if (utilityModels.Count > 0)
+        {
+            <div class="d-flex justify-content-start flex-wrap">
+                @foreach (var utility in utilityModels)
+                {
+                    <UtilityCard Class="m-1" Utility="utility" UtilitySelected="UtilitySelected"/>
+                }
+            </div>
+        }
+        else
+        {
+            <NoData Text="No Utilities Added" Icon="circle-xmark" />
+        }
+    </div>
+</div>
+
+@code {
+    private List<UtilityModel> utilityModels = new List<UtilityModel>();
+
+    private bool editing = false;
+    private bool loading = false;
+    private UtilityModel? utilityToEdit = null;
+
+    private async Task DoneEditing()
+    {
+        editing = false;
+        utilityToEdit = null;
+
+        // Dispose of the base Entity Repo so we get a fresh DB Context
+        Dispose();
+
+        await RefreshUtilities();
+    }
+
+    private void UtilitySelected(UtilityModel model)
+    {
+        utilityToEdit = model;
+        editing = true;
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await RefreshUtilities();
+    }
+
+    private async Task RefreshUtilities()
+    {
+        loading = true;
+
+        var utilities = await EntityRepository.ListAll<Utility>();
+
+        // map from entity to model
+        utilityModels = _mapper.Map<List<UtilityModel>>(utilities);
+
+        loading = false;
+    }
+}

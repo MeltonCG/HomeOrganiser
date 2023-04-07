@@ -1,4 +1,5 @@
-﻿@using System.Net.Http
+﻿@using AutoMapper
+@using System.Net.Http
 @using Microsoft.AspNetCore.Authorization
 @using Microsoft.AspNetCore.Components.Authorization
 @using Microsoft.AspNetCore.Components.Forms
@@ -6,5 +7,17 @@
 @using Microsoft.AspNetCore.Components.Web
 @using Microsoft.AspNetCore.Components.Web.Virtualization
 @using Microsoft.JSInterop
+
 @using HomeOrganiser
 @using HomeOrganiser.Shared
+@using HomeOrganiser.Components.Common;
+@using HomeOrganiser.Infrastructure
+@using HomeOrganiser.Components
+@using HomeOrganiser.Models
+
+@using HomeOrganiser.Core.Interfaces
+@using HomeOrganiser.Core.Enums
+@using HomeOrganiser.Core.Entities;
+
+@using MELT.BlazorComponents.Components
+@using MELT.BlazorComponents.Enums
